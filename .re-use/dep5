@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: cla-assistant
+Upstream-Contact: anton.kharitonov@sap.com or akshay.iyyadurai.balasundaram@sap.com
+Source: https://github.com/cla-assistant/cla-assistant
+
+Files: src/*
+Copyright: 2020 SAP SE or an SAP affiliate company. All rights reserved.
+License: Apache License 2.0
