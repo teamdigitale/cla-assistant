@@ -4,5 +4,5 @@ Upstream-Contact: anton.kharitonov@sap.com or akshay.iyyadurai.balasundaram@sap.
 Source: https://github.com/cla-assistant/cla-assistant
 
 Files: src/*
-Copyright: 2020 SAP SE or an SAP affiliate company. All rights reserved.
+Copyright: 2020 SAP SE or an SAP affiliate company and CLA assistant contributors. All rights reserved.
 License: Apache License 2.0
