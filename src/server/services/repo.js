@@ -3,6 +3,8 @@ const mongoose = require('mongoose')
 const Repo = mongoose.model('Repo')
 const _ = require('lodash')
 
+const config = require('../../config')
+
 //services
 const github = require('../services/github')
 const logger = require('../services/logger')
@@ -273,7 +275,11 @@ class RepoService {
 
         let repoSet = []
         ghRepos.data.forEach((githubRepo) => {
-            if (githubRepo.permissions.push) {
+            if (config.server.github.orgs.length > 0
+                && config.server.github.orgs.indexOf(githubRepo.owner.login) == -1) {
+                return
+            }
+            if (githubRepo.permissions.push ) {
                 repoSet.push({
                     owner: githubRepo.owner.login,
                     repo: githubRepo.name,

@@ -1,4 +1,5 @@
 // module
+const config = require('../../config')
 const github = require('./github')
 const repoService = require('./repo')
 const url = require('./url')
@@ -55,6 +56,12 @@ class WebhookService {
     }
 
     async _createHook(owner, repo, token) {
+        if (config.server.github.orgs.length > 0) {
+            if (config.server.github.orgs.indexOf(owner) == -1) {
+                throw "Not in GITHUB_ORGS: '" + owner + "'"
+            }
+        }
+
         if (!owner || !token) {
             throw 'Owner/org and token are required.'
         }

@@ -26,6 +26,9 @@ module.exports = {
             admin_users: process.env.GITHUB_ADMIN_USERS ? process.env.GITHUB_ADMIN_USERS.split(/\s*,\s*/) : [],
 
             // required
+            orgs: process.env.GITHUB_ORGS ? process.env.GITHUB_ORGS.split(',') : [],
+
+            // required
             token: process.env.GITHUB_TOKEN,
 
             //temporary, not required
