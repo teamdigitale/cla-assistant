@@ -1,15 +1,20 @@
 const githubService = require('../services/github')
 const log = require('../services/logger')
 const Joi = require('joi')
+const fetch = require('node-fetch')
 
 class Utils {
     couldBeAdmin(username) {
         return config.server.github.admin_users.length === 0 || config.server.github.admin_users.indexOf(username) >= 0
     }
 
-    async checkRepoPushPermissionByName(repo, owner, token) {
+    async checkRepoPushPermissionByName(repo, owner, repoId, token) {
         try {
-            const res = await githubService.call({
+            let res, repoData
+            if (!repo || !owner) {
+                repoData = await this.checkRepoPushPermissionById(repoId, token)
+            } else {
+            res = await githubService.call({
                 obj: 'repos',
                 fun: 'get',
                 arg: {
@@ -18,13 +23,15 @@ class Utils {
                 },
                 token: token
             })
-            if (!res.data) {
-                throw new Error('No data returned')
+                repoData = res.data
             }
-            if (!res.data.permissions || !res.data.permissions.push) {
-                throw new Error('User has no push permission for this repo')
-            }
-            return res.data
+            if (!repoData) {
+                    throw new Error('No data returned')
+                }
+            if (!repoData.permissions || !repoData.permissions.push) {
+                    throw new Error('User has no push permission for this repo')
+                }
+            return repoData
         } catch (error) {
             if (error.status === 404) {
                 log.info('User has no authorization for ' + repo + ' repository.')
@@ -43,7 +50,8 @@ class Utils {
             },
             token: token
         })
-        return res.data.permissions.push
+        // return res.data.permissions.push
+        return res.data
     }
 
     async checkOrgAdminPermission(org, username, token) {

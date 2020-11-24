@@ -2,43 +2,64 @@ let passport = require('passport')
 let q = require('q')
 let utils = require('./utils')
 
-function authenticateForExternalApi(req, res, next) {
-    passport.authenticate('token', { session: false }, async function (err, user) {
-        if (err) {
-            return next(err)
-        }
+// function authenticateForExternalApi(req, res, next) {
+//     passport.authenticate('token', { session: false }, async function (err, user) {
+//         if (err) {
+//             return next(err)
+//         }
 
-        if (!user) {
-            res.status(401).json({ message: 'Incorrect token credentials' })
+//         try {
+//             user = user ? user : req.user
+//         } catch (error) {
+//             throw new Error(error)
+//         }
 
-            return
-        }
-        let hasPermission = false
-        try {
-            if (req.args.repoId) {
-                hasPermission = await utils.checkRepoPushPermissionById(req.args.repoId, user.token)
-            } else if (req.args.org) {
-                hasPermission = await utils.checkOrgAdminPermission(req.args.org, user.login, user.token)
-            }
-        } catch (e) {
-            const message = e || 'You have no push permission for this org or repo'
-            return res.status(403).json({ message })
-        }
-        // utils.checkRepoPushPermissionById(req.args.repoId, user.token, function (err, hasPermission) {
-        if (hasPermission) {
-            req.user = user
-            next()
-        } else {
-            res.status(403).json({ message: err || 'You have no push permission for this org or repo' })
-        }
-        // })
-    })(req, res)
-}
+//         if (!user) {
+//             res.status(401).json({ message: 'Incorrect token credentials' })
+
+//             return
+//         }
+//         let hasPermission = false
+//         try {
+//             // getting repoId from owner and repository name
+//             let repoId
+//             if (!req.args.repoId) {
+//                 const url = `https://api.github.com/repos/${req.args.owner}/${req.args.repo}`
+//                 res = await fetch(url)
+//                 const resJSON = await res.json()
+//                 repoId = resJSON.id
+//             } else {
+//                 repoId = req.args.repoId
+//             }
+//             if (repoId) {
+//                 hasPermission = await utils.checkRepoPushPermissionById(repoId, user.token)
+//             } else if (req.args.org) {
+//                 hasPermission = await utils.checkOrgAdminPermission(req.args.org, user.login, user.token)
+//             }
+//         } catch (e) {
+//             const message = e || 'You have no push permission for this org or repo'
+//             return res.status(403).json({ message })
+//         }
+//         // utils.checkRepoPushPermissionById(req.args.repoId, user.token, function (err, hasPermission) {
+//         if (hasPermission) {
+//             req.user = user
+//             next()
+//         } else {
+//             res.status(403).json({ message: err || 'You have no push permission for this org or repo' })
+//         }
+//         // })
+//     })(req, res)
+// }
 
 function authenticateForAdminOnlyApi(req, res, next) {
     passport.authenticate('token', { session: false }, function (err, user) {
         if (err) {
             return next(err)
+        }
+        try {
+            user = user ? user : req.user
+        } catch (error) {
+            throw new Error(error)
         }
         if (!user) {
             return res.status(401).json({ message: 'Incorrect token credentials' })
@@ -47,8 +68,8 @@ function authenticateForAdminOnlyApi(req, res, next) {
             return res.status(403).json({ message: 'Must have admin:org_hook permission scope' })
         }
         let promises = []
-        if (req.args.owner && req.args.repo) {
-            promises.push(utils.checkRepoPushPermissionByName(req.args.repo, req.args.owner, user.token))
+        if ((req.args.owner && req.args.repo) || req.args.repoId) {
+            promises.push(utils.checkRepoPushPermissionByName(req.args.repo, req.args.owner, req.args.repoId, user.token))
         }
         if (req.args.org) {
             promises.push(utils.checkOrgAdminPermission(req.args.org, user.login, user.token))
@@ -65,12 +86,14 @@ function authenticateForAdminOnlyApi(req, res, next) {
 }
 
 module.exports = function (req, res, next) {
-    if (config.server.api_access.free.indexOf(req.originalUrl) > -1 || req.isAuthenticated()) {
+    if (config.server.api_access.free.indexOf(req.originalUrl) > -1) {
         return next()
     } else if (config.server.api_access.external.indexOf(req.originalUrl) > -1) {
-        return authenticateForExternalApi(req, res, next)
+        // return authenticateForExternalApi(req, res, next)
     } else if (config.server.api_access.admin_only.indexOf(req.originalUrl) > -1) {
         return authenticateForAdminOnlyApi(req, res, next)
+    } else if (req.isAuthenticated()) {
+        return next()
     }
     res.status(401).send('Authentication required')
 }
