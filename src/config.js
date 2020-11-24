@@ -88,7 +88,7 @@ module.exports = {
 
         api_access: {
             free: ['/api/cla/get', '/api/cla/getLinkedItem'],
-            external: ['/api/cla/getAll'],
+            external: [],
             admin_only: [
                 '/api/cla/addSignature',
                 '/api/cla/hasSignature',
@@ -98,7 +98,9 @@ module.exports = {
                 '/api/org/create',
                 '/api/org/remove',
                 '/api/repo/create',
-                '/api/repo/remove'
+                '/api/repo/remove',
+                '/api/cla/getAll',
+                'api/cla/upload'
             ]
         },
 

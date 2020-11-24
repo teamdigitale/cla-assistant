@@ -17,6 +17,7 @@ module.controller('SettingsCtrl', ['$rootScope', '$scope', '$stateParams', '$RPC
         $scope.valid = {};
         $scope.signatures = {};
         $scope.contributors = [];
+        $scope.jsonUrl = undefined
 
         var webhook = {};
 
@@ -119,6 +120,9 @@ module.controller('SettingsCtrl', ['$rootScope', '$scope', '$stateParams', '$RPC
                             $scope.contributors.push(contributor);
                         });
                     }
+                    var jsonData = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify($scope.contributors));
+                    $scope.jsonUrl = 'data:' + jsonData;
+
                     if (typeof cb == 'function') {
                         cb();
                     }
