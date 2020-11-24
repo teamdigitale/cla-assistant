@@ -11,8 +11,7 @@ RUN \
   addgroup -S cla-assistant && \
   adduser -S -D -G cla-assistant cla-assistant && \
   chown -R cla-assistant:cla-assistant /cla-assistant && \
-  su-exec cla-assistant /bin/sh -c 'cd /cla-assistant && npm install && node_modules/grunt-cli/bin/grunt build && rm -rf /home/cla-assistant/.npm .git' && \
-  apk del .build-deps
+  su-exec cla-assistant /bin/sh -c 'cd /cla-assistant && npm install && node_modules/grunt-cli/bin/grunt build && rm -rf /home/cla-assistant/.npm .git'
 
 USER cla-assistant
 CMD ["npm", "start"]
