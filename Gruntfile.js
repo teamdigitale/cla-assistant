@@ -179,6 +179,12 @@ module.exports = function (grunt) {
                   cwd: 'node_modules/clipboard/dist',
                   src: ['*.min.js'],
                   dest: 'src/client/assets/js/vendor'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/ng-csv/build',
+                  src: ['*.min.js'],
+                  dest: 'src/client/assets/js/vendor'
               }]
           }
       }
