@@ -152,9 +152,15 @@ module.exports = function (grunt) {
                 },{
                   expand: true,
                   dot: true,
-                  cwd: 'node_modules/angular-ui-utils',
-                  src: ['*'],
-                  dest: 'src/client/assets/js/angular/angular-ui-utils'
+                  cwd: 'node_modules/ui-select',
+                  src: ['dist/*.min.js', 'dist/*.min.js.map'],
+                  dest: 'src/client/assets/js/angular/ui-select'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/ui-select',
+                  src: ['dist/*.min.css', 'dist/*.min.css.map'],
+                  dest: 'src/client/assets/styles/angular/ui-select'
                 },{
                   expand: true,
                   dot: true,
