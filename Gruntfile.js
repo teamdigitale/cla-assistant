@@ -173,6 +173,12 @@ module.exports = function (grunt) {
                   cwd: 'node_modules/papaparse',
                   src: ['papaparse.min.js'],
                   dest: 'src/client/assets/js/vendor'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/clipboard/dist',
+                  src: ['*.min.js'],
+                  dest: 'src/client/assets/js/vendor'
               }]
           }
       }
