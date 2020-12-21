@@ -146,20 +146,20 @@ module.exports = function (grunt) {
                 },{
                   expand: true,
                   dot: true,
-                  cwd: 'node_modules/angular-ui-router',
-                  src: ['release/*.min.js', 'release/*.min.js.map'],
+                  cwd: 'node_modules/angular-ui-router/release',
+                  src: ['*.min.js', '*.min.js.map'],
                   dest: 'src/client/assets/js/angular/angular-ui-router'
                 },{
                   expand: true,
                   dot: true,
-                  cwd: 'node_modules/ui-select',
-                  src: ['dist/*.min.js', 'dist/*.min.js.map'],
+                  cwd: 'node_modules/ui-select/dist',
+                  src: ['*.min.js', '*.min.js.map'],
                   dest: 'src/client/assets/js/angular/ui-select'
                 },{
                   expand: true,
                   dot: true,
-                  cwd: 'node_modules/ui-select',
-                  src: ['dist/*.min.css', 'dist/*.min.css.map'],
+                  cwd: 'node_modules/ui-select/dist',
+                  src: ['*.min.css', '*.min.css.map'],
                   dest: 'src/client/assets/styles/angular/ui-select'
                 },{
                   expand: true,
