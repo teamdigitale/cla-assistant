@@ -155,6 +155,12 @@ module.exports = function (grunt) {
                   cwd: 'node_modules/angular-ui-utils',
                   src: ['*'],
                   dest: 'src/client/assets/js/angular/angular-ui-utils'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/jquery/dist',
+                  src: ['*.min.js', '*.min.map'],
+                  dest: 'src/client/assets/js/vendor'
               }]
           }
       }
