@@ -57,6 +57,7 @@
         "mongoose": "^5.7.5",
         "node-fetch": "^2.6.1",
         "node-sass-middleware": "^0.11.0",
+        "papaparse": "^5.3.0",
         "passport": "^0.4.0",
         "passport-accesstoken": "^0.1.0",
         "passport-github": "^1.1.0",
