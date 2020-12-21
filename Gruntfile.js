@@ -113,6 +113,78 @@ module.exports = function (grunt) {
                   cwd: 'node_modules/font-awesome',
                   src: ['fonts/*.*'],
                   dest: 'src/client/assets/'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular',
+                  src: ['*.js', '*.map'],
+                  dest: 'src/client/assets/js/angular/angular'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-scroll',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-scroll'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-sanitize',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-sanitize'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-animate',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-animate'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-route',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-route'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-ui-router/release',
+                  src: ['*.min.js', '*.min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-ui-router'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/ui-select/dist',
+                  src: ['*.min.js', '*.min.js.map'],
+                  dest: 'src/client/assets/js/angular/ui-select'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/ui-select/dist',
+                  src: ['*.min.css', '*.min.css.map'],
+                  dest: 'src/client/assets/styles/angular/ui-select'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/jquery/dist',
+                  src: ['*.min.js', '*.min.map'],
+                  dest: 'src/client/assets/js/vendor'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/papaparse',
+                  src: ['papaparse.min.js'],
+                  dest: 'src/client/assets/js/vendor'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/clipboard/dist',
+                  src: ['*.min.js'],
+                  dest: 'src/client/assets/js/vendor'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/ng-csv/build',
+                  src: ['*.min.js'],
+                  dest: 'src/client/assets/js/vendor'
               }]
           }
       }
