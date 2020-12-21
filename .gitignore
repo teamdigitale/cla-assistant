@@ -13,6 +13,7 @@ src/client/assets/styles/app.css.map
 src/client/assets/styles/font-awesome*
 src/client/assets/fonts/FontAwesome*
 src/client/assets/fonts/fontawesome*
+src/client/assets/js/angular
 src/client/app.min.js
 src/client/app.min.js.map
 .sass-cache

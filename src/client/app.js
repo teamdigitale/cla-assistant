@@ -1,5 +1,5 @@
 var module = angular.module('app', ['cla.filters',
-    'ui.utils',
+    // 'ui.utils',
     'ui.router',
     'ui.bootstrap',
     'ui.bootstrap.popover',

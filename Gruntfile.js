@@ -113,6 +113,48 @@ module.exports = function (grunt) {
                   cwd: 'node_modules/font-awesome',
                   src: ['fonts/*.*'],
                   dest: 'src/client/assets/'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular',
+                  src: ['*.js', '*.map'],
+                  dest: 'src/client/assets/js/angular/angular'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-scroll',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-scroll'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-sanitize',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-sanitize'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-animate',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-animate'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-route',
+                  src: ['*.min.js', '*min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-route'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-ui-router',
+                  src: ['release/*.min.js', 'release/*.min.js.map'],
+                  dest: 'src/client/assets/js/angular/angular-ui-router'
+                },{
+                  expand: true,
+                  dot: true,
+                  cwd: 'node_modules/angular-ui-utils',
+                  src: ['*'],
+                  dest: 'src/client/assets/js/angular/angular-ui-utils'
               }]
           }
       }
